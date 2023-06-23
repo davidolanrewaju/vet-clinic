@@ -16,14 +16,14 @@ ALTER TABLE animals ADD species VARCHAR(255);
 CREATE TABLE owners (
     id serial PRIMARY KEY,
     full_name VARCHAR(255),
-    age SMALLINT
+    age INT
 );
 
 /*Create species table*/
 
 CREATE TABLE species (
     id serial PRIMARY KEY,
-    specie_name VARCHAR(255)
+    name VARCHAR(255)
 );
 
 /*Alter animals table*/
