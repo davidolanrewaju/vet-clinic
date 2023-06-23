@@ -38,16 +38,21 @@ BEGIN;
 UPDATE animals SET species = 'undefined';
 SELECT * FROM animals;
 ROLLBACK;
+SELECT * FROM animals;
 
 BEGIN;
 UPDATE animals SET species = 'digimon' WHERE animal_name LIKE '%mon';
 
-UPDATE animals SET species = 'pokemon' WHERE animal_name IN ('Charmander', 'Squirtle', 'Blossom', 'Ditto', 'Pikachu');
+UPDATE animals SET species = 'pokemon' WHERE species = NULL;
+SELECT * FROM animals;
 COMMIT;
+SELECT * FROM animals;
 
 BEGIN;
-DELETE FROM animals WHERE id IN (1,2,3,4,5,6,7,8,9,10,11);
+DELETE FROM animals WHERE;
+SELECT * FROM animals;
 ROLLBACK;
+SELECT * FROM animals;
 
 BEGIN;
 DELETE FROM animals WHERE date_of_birth > '2022-01-01';
@@ -70,9 +75,9 @@ SELECT COUNT(*) AS zero_escape_attempt FROM animals WHERE escape_attempts = 0;
 SELECT AVG(weight_kg) AS average_weight_kg FROM animals;
 
 -- Who escapes the most, neutered or not neutered animals?
-SELECT animal_name, SUM (escape_attempts) AS total FROM animals
-GROUP BY animal_name ORDER BY total DESC
-LIMIT 1;
+SELECT neutered, MAX(escape_attempts) AS total 
+FROM animals
+GROUP BY neutered;
 
 -- What is the minimum and maximum weight of each type of animal?
 SELECT species, MIN(weight_kg) AS min_weight, MAX(weight_kg) AS max_weight
